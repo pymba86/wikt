@@ -6,44 +6,49 @@ use PHPUnit\Framework\TestCase;
 use Wikt\Document\DocxDocument;
 use Wikt\Templator;
 
-class TemplatorTest extends TestCase {
+class TemplatorTest extends TestCase
+{
 
 
     /**
      * @throws \Wikt\Exception\InvalidArgumentException
      */
-    public function testDocxDocumentTemplator() {
+    public function testDocxDocumentTemplator()
+    {
 
         $cachePath = __DIR__ . '/temp/';
         $templator = new Templator($cachePath);
+        $templator->trackDocument = true;
+        $templator->debug =true;
 
         $documentPath = __DIR__ . '/resources/document.docx';
         $document = new DocxDocument($documentPath);
 
         $values = array(
-            'library' => 'Wikt',
-            'simpleValue' => 'I am simple value',
-            'nested' => array(
-                'firstValue' => 'First child value',
-                'secondValue' => 'Second child value'
-            ),
-            'header' => 'test of a table row',
-            'students' => array(
-                array('id' => 1, 'name' => 'Student 1', 'mark' => '10'),
-                array('id' => 2, 'name' => 'Student 2', 'mark' => '4'),
-                array('id' => 3, 'name' => 'Student 3', 'mark' => '7')
-            ),
-            'maxMark' => 10,
-            'todo' => array(
-                'TODO 1',
-                'TODO 2',
-                'TODO 3'
-            )
+            'medical_institutuion' => 'Бюджетное учреждение Ханты-Мансийского автономного округа - Югры "Окружная клиническая больница"',
+            'member' => [
+                'organization' => 'ОАО "Водоканал"',
+                'fio' => 'Журавлев Иван Сергеевич',
+                'contacts' => '895042335675, hic@vodokanal.ru'
+            ],
+            'date' => date("d.m.y"),
+            'maintenance' => [
+                'route_name' => 'г. Ханты-Мансийск - г. Горноправдинск',
+                'event_name' => 'соревнование по волейболу(16-18 лет)',
+                'date' => [
+                    'start' => '25.11.2019',
+                    'end' => '30.11.2019',
+                ]
+            ],
+            'children_group' => [
+                'name' => 'школьники(9-11 класс)',
+                'num' => 30
+            ]
         );
         $result = $templator->render($document, $values);
 
-         $saved = $result->save(__DIR__ . '/results', 'result.docx');
+        $saved = $result->save(__DIR__ . '/results', 'template.docx');
 
-         $this->assertTrue($saved);
+        $this->assertTrue($saved);
     }
 }
