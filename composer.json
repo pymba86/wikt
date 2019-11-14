@@ -2,7 +2,6 @@
   "name": "pymba86/wikt",
   "description": "Библиотека шаблонов в стиле XSL для документов docx",
   "type": "library",
-  "version": "0.0.1",
   "license": "MIT",
   "keywords": [
     "docx",
