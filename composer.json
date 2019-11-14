@@ -1,0 +1,32 @@
+{
+  "name": "pymba86/wikt",
+  "description": "Библиотека шаблонов в стиле XSL для документов docx",
+  "type": "library",
+  "keywords": [
+    "docx",
+    "template",
+    "word"
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "doctrine/lexer": "^1.2",
+    "ext-mbstring": "*",
+    "ext-dom": "*",
+    "ext-zip": "*",
+    "ext-json": "*",
+    "ext-xsl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wikt\\": "src/Wikt"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Test\\Wikt\\" : "test/Wikt"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  }
+}
